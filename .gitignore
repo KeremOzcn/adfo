@@ -1,0 +1,22 @@
+# Compiled binary
+bin/
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Generated result data (reproducible by running bin/app)
+results/*.csv
+results/*.json
+
+# Keep result images
+!results/*.png
+!results/figures/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
