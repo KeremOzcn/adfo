@@ -1,0 +1,79 @@
+{
+  "paper": "K\u00fcbler, Glock, Bauernhansl (2020)",
+  "doi": "10.1016/j.cie.2020.106645",
+  "parameters": {
+    "nord_period1": 5000,
+    "max_ol_per_order": 2,
+    "max_parts_per_ol": 6,
+    "L": 12,
+    "AF": 0.6,
+    "num_items": 6000,
+    "num_subperiods": 20,
+    "num_test_periods": 9,
+    "num_warmup_periods": 12,
+    "M": 2.0,
+    "irf": 0.025,
+    "tphy_min": 3.0,
+    "tadm_min": 1.0,
+    "vpick_LU_per_sec": 1.0,
+    "picker_capacity_WU": 100.0,
+    "tf_s1": 0.3,
+    "sf_s1": 0.15,
+    "tf_s2": 0.15,
+    "sf_s2": 0.075,
+    "e_phy_LU": 180.0,
+    "e_adm_LU": 60.0
+  },
+  "warehouse": {
+    "total_locations": 7200,
+    "aisles": 10,
+    "cross_aisles": 4,
+    "blocks": 3,
+    "racks_per_aisle_side": 90,
+    "locs_per_rack": 4
+  },
+  "items": {
+    "total": 6000,
+    "class_A": 300,
+    "class_B": 900,
+    "class_C": 4800
+  },
+  "depso_parameters": {
+    "num_particles": 5,
+    "num_iterations": 500,
+    "sgbest_threshold": 0.5,
+    "max_local_search_iterations": 100,
+    "max_stagnation_bound": 20
+  },
+  "holt_winters_params": {
+    "alpha": 0.19,
+    "beta": 0.053,
+    "gamma": 0.1
+  },
+  "relocation_params": {
+    "min_periods_in_wrong_class_o": 2,
+    "min_periods_in_target_class_u": 1,
+    "max_relocation_suggestions": 50
+  },
+  "files": {
+    "warehouse_layout": "warehouse_layout.json",
+    "location_class_A": "location_class_A.json",
+    "location_class_B": "location_class_B.json",
+    "location_class_C": "location_class_C.json",
+    "items_metadata": "items_metadata.json",
+    "items_scenario1": "items_scenario1.json",
+    "items_scenario2": "items_scenario2.json",
+    "orders": "orders_s{1,2}_period{01-09}_sub{01-20}.json"
+  },
+  "validation_targets": {
+    "scenario1_travel_distance_reduction": "15.02%",
+    "scenario1_relocation_effort": "2.79%",
+    "scenario1_net_reduction": "12.23%",
+    "scenario2_travel_distance_reduction": "7.45%",
+    "scenario2_relocation_effort": "2.08%",
+    "scenario2_net_reduction": "5.37%",
+    "depso_vs_SOP": "-83.78% avg",
+    "depso_vs_FCFS": "-40.80% avg",
+    "depso_vs_savings": "-31.64% avg"
+  }
+}

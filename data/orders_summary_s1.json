@@ -1,0 +1,50 @@
+{
+  "scenario": 1,
+  "periods": [
+    {
+      "period": 1,
+      "total_orders": 10267,
+      "avg_orders_per_subperiod": 513.35
+    },
+    {
+      "period": 2,
+      "total_orders": 10071,
+      "avg_orders_per_subperiod": 503.55
+    },
+    {
+      "period": 3,
+      "total_orders": 9865,
+      "avg_orders_per_subperiod": 493.25
+    },
+    {
+      "period": 4,
+      "total_orders": 9622,
+      "avg_orders_per_subperiod": 481.1
+    },
+    {
+      "period": 5,
+      "total_orders": 9279,
+      "avg_orders_per_subperiod": 463.95
+    },
+    {
+      "period": 6,
+      "total_orders": 9191,
+      "avg_orders_per_subperiod": 459.55
+    },
+    {
+      "period": 7,
+      "total_orders": 8865,
+      "avg_orders_per_subperiod": 443.25
+    },
+    {
+      "period": 8,
+      "total_orders": 8718,
+      "avg_orders_per_subperiod": 435.9
+    },
+    {
+      "period": 9,
+      "total_orders": 8513,
+      "avg_orders_per_subperiod": 425.65
+    }
+  ]
+}

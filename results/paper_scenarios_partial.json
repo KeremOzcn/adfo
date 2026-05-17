@@ -1,0 +1,267 @@
+{
+  "scenarios": [
+    {
+      "scenario": "50_2_6",
+      "num_orders": 50,
+      "n_instances": 5,
+      "stats": {
+        "SOP": {
+          "mean_td": 5131.2,
+          "std_td": 500.99716566064524,
+          "min_td": 4212.0,
+          "max_td": 5647.0,
+          "mean_rt": 0.0005827764000024161,
+          "vs_sop_mean": 0.0,
+          "vs_sop_min": 0.0,
+          "vs_sop_max": 0.0,
+          "vs_fcfs_mean": 253.36540768768594
+        },
+        "FCFS": {
+          "mean_td": 1451.4,
+          "std_td": 74.18247771542819,
+          "min_td": 1332.0,
+          "max_td": 1528.0,
+          "mean_rt": 0.00019385700000498218,
+          "vs_sop_mean": -71.51489769509226,
+          "vs_sop_min": -75.20807508411545,
+          "vs_sop_max": -68.37606837606837,
+          "vs_fcfs_mean": 0.0
+        },
+        "DEPSO": {
+          "mean_td": 794.4,
+          "std_td": 61.77896082000733,
+          "min_td": 685.0,
+          "max_td": 849.0,
+          "mean_rt": 9.856395872799997,
+          "vs_sop_mean": -84.34805696758572,
+          "vs_sop_min": -87.86966530901364,
+          "vs_sop_max": -81.79012345679013,
+          "vs_fcfs_mean": -45.27657610542134
+        },
+        "RBRS-AE": {
+          "mean_td": 779.8,
+          "std_td": 38.13869426186481,
+          "min_td": 726.0,
+          "max_td": 828.0,
+          "mean_rt": 26.229681905599996,
+          "vs_sop_mean": -84.6634432251249,
+          "vs_sop_min": -87.14361607933417,
+          "vs_sop_max": -82.26495726495726,
+          "vs_fcfs_mean": -46.244978827919155
+        }
+      }
+    }
+  ],
+  "paper_reference": {
+    "50_2_6": {
+      "vs_sop": -88.52,
+      "vs_fcfs": -38.98,
+      "vs_savings": -30.03,
+      "runtime": 23.96
+    },
+    "50_2_10": {
+      "vs_sop": -87.13,
+      "vs_fcfs": -44.0,
+      "vs_savings": -33.36,
+      "runtime": 21.28
+    },
+    "50_6_2": {
+      "vs_sop": -87.36,
+      "vs_fcfs": -30.74,
+      "vs_savings": -28.35,
+      "runtime": 74.15
+    },
+    "50_6_6": {
+      "vs_sop": -81.54,
+      "vs_fcfs": -41.09,
+      "vs_savings": -35.92,
+      "runtime": 42.79
+    },
+    "50_6_10": {
+      "vs_sop": -77.49,
+      "vs_fcfs": -44.2,
+      "vs_savings": -36.31,
+      "runtime": 38.25
+    },
+    "50_10_2": {
+      "vs_sop": -84.83,
+      "vs_fcfs": -28.61,
+      "vs_savings": -25.9,
+      "runtime": 108.77
+    },
+    "50_10_6": {
+      "vs_sop": -76.61,
+      "vs_fcfs": -38.75,
+      "vs_savings": -32.6,
+      "runtime": 63.93
+    },
+    "50_10_10": {
+      "vs_sop": -70.6,
+      "vs_fcfs": -42.37,
+      "vs_savings": -33.87,
+      "runtime": 57.21
+    },
+    "100_2_2": {
+      "vs_sop": -92.74,
+      "vs_fcfs": -36.46,
+      "vs_savings": -26.29,
+      "runtime": 59.56
+    },
+    "100_2_6": {
+      "vs_sop": -90.79,
+      "vs_fcfs": -47.77,
+      "vs_savings": -34.77,
+      "runtime": 35.69
+    },
+    "100_2_10": {
+      "vs_sop": -88.63,
+      "vs_fcfs": -51.33,
+      "vs_savings": -38.24,
+      "runtime": 30.5
+    },
+    "100_6_2": {
+      "vs_sop": -89.2,
+      "vs_fcfs": -30.78,
+      "vs_savings": -26.55,
+      "runtime": 107.8
+    },
+    "100_6_6": {
+      "vs_sop": -82.77,
+      "vs_fcfs": -42.66,
+      "vs_savings": -35.36,
+      "runtime": 63.73
+    },
+    "100_6_10": {
+      "vs_sop": -78.51,
+      "vs_fcfs": -45.74,
+      "vs_savings": -36.43,
+      "runtime": 58.8
+    },
+    "100_10_2": {
+      "vs_sop": -86.23,
+      "vs_fcfs": -29.22,
+      "vs_savings": -26.4,
+      "runtime": 146.5
+    },
+    "100_10_6": {
+      "vs_sop": -77.36,
+      "vs_fcfs": -41.29,
+      "vs_savings": -33.56,
+      "runtime": 91.49
+    },
+    "100_10_10": {
+      "vs_sop": -71.25,
+      "vs_fcfs": -44.12,
+      "vs_savings": -33.65,
+      "runtime": 88.89
+    },
+    "150_2_2": {
+      "vs_sop": -94.22,
+      "vs_fcfs": -34.15,
+      "vs_savings": -24.76,
+      "runtime": 78.85
+    },
+    "150_2_6": {
+      "vs_sop": -91.23,
+      "vs_fcfs": -50.26,
+      "vs_savings": -34.75,
+      "runtime": 44.98
+    },
+    "150_2_10": {
+      "vs_sop": -89.25,
+      "vs_fcfs": -51.97,
+      "vs_savings": -35.8,
+      "runtime": 40.96
+    },
+    "150_6_2": {
+      "vs_sop": -89.34,
+      "vs_fcfs": -32.23,
+      "vs_savings": -28.04,
+      "runtime": 117.91
+    },
+    "150_6_6": {
+      "vs_sop": -82.89,
+      "vs_fcfs": -43.43,
+      "vs_savings": -35.08,
+      "runtime": 79.13
+    },
+    "150_6_10": {
+      "vs_sop": -78.45,
+      "vs_fcfs": -46.16,
+      "vs_savings": -35.84,
+      "runtime": 71.21
+    },
+    "150_10_2": {
+      "vs_sop": -86.22,
+      "vs_fcfs": -29.21,
+      "vs_savings": -24.83,
+      "runtime": 185.54
+    },
+    "150_10_6": {
+      "vs_sop": -77.32,
+      "vs_fcfs": -40.74,
+      "vs_savings": -32.25,
+      "runtime": 114.83
+    },
+    "150_10_10": {
+      "vs_sop": -71.41,
+      "vs_fcfs": -44.38,
+      "vs_savings": -32.15,
+      "runtime": 117.1
+    },
+    "200_2_2": {
+      "vs_sop": -94.26,
+      "vs_fcfs": -41.36,
+      "vs_savings": -26.89,
+      "runtime": 82.87
+    },
+    "200_2_6": {
+      "vs_sop": -91.54,
+      "vs_fcfs": -51.42,
+      "vs_savings": -33.72,
+      "runtime": 52.11
+    },
+    "200_2_10": {
+      "vs_sop": -89.26,
+      "vs_fcfs": -53.33,
+      "vs_savings": -35.29,
+      "runtime": 50.53
+    },
+    "200_6_2": {
+      "vs_sop": -89.61,
+      "vs_fcfs": -31.43,
+      "vs_savings": -26.41,
+      "runtime": 138.78
+    },
+    "200_6_6": {
+      "vs_sop": -82.58,
+      "vs_fcfs": -41.96,
+      "vs_savings": -33.17,
+      "runtime": 97.02
+    },
+    "200_6_10": {
+      "vs_sop": -78.35,
+      "vs_fcfs": -45.24,
+      "vs_savings": -34.01,
+      "runtime": 91.46
+    },
+    "200_10_2": {
+      "vs_sop": -86.11,
+      "vs_fcfs": -28.26,
+      "vs_savings": -24.02,
+      "runtime": 226.18
+    },
+    "200_10_6": {
+      "vs_sop": -77.21,
+      "vs_fcfs": -40.34,
+      "vs_savings": -31.02,
+      "runtime": 138.9
+    },
+    "200_10_10": {
+      "vs_sop": -71.57,
+      "vs_fcfs": -43.94,
+      "vs_savings": -31.79,
+      "runtime": 138.01
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "config": {
+    "n_instances": 5,
+    "num_orders": 50,
+    "scenario": 1,
+    "period": 1,
+    "depso_iter": 200,
+    "depso_particles": 5,
+    "rbrs_iter": 100,
+    "paper_scenario": "50_2_6"
+  },
+  "stats": [
+    {
+      "algorithm": "SOP",
+      "n": 5,
+      "mean_td": 5131.2,
+      "std_td": 500.99716566064524,
+      "min_td": 4212.0,
+      "max_td": 5647.0,
+      "mean_runtime": 0.0004984453999895777,
+      "vs_sop_pct": 0.0,
+      "vs_fcfs_pct": 253.36540768768594
+    },
+    {
+      "algorithm": "FCFS",
+      "n": 5,
+      "mean_td": 1451.4,
+      "std_td": 74.18247771542819,
+      "min_td": 1332.0,
+      "max_td": 1528.0,
+      "mean_runtime": 0.00028034320000642766,
+      "vs_sop_pct": -71.51489769509226,
+      "vs_fcfs_pct": 0.0
+    },
+    {
+      "algorithm": "DEPSO",
+      "n": 5,
+      "mean_td": 785.6,
+      "std_td": 54.050346899904355,
+      "min_td": 700.0,
+      "max_td": 849.0,
+      "mean_runtime": 20.062364707800008,
+      "vs_sop_pct": -84.5289553871628,
+      "vs_fcfs_pct": -45.870512031301715
+    },
+    {
+      "algorithm": "RBRS-AE",
+      "n": 5,
+      "mean_td": 779.8,
+      "std_td": 38.13869426186481,
+      "min_td": 726.0,
+      "max_td": 828.0,
+      "mean_runtime": 26.062529120599983,
+      "vs_sop_pct": -84.6634432251249,
+      "vs_fcfs_pct": -46.244978827919155
+    }
+  ],
+  "raw_results": [
+    {
+      "instance_id": 0,
+      "seed": 42,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "SOP",
+      "travel_distance": 5238.0,
+      "runtime_seconds": 0.0005728559999624849,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 0,
+      "seed": 42,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "FCFS",
+      "travel_distance": 1528.0,
+      "runtime_seconds": 0.00046274700002868485,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 0,
+      "seed": 42,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "DEPSO",
+      "travel_distance": 829.0,
+      "runtime_seconds": 19.721489074000033,
+      "iterations_used": 200
+    },
+    {
+      "instance_id": 0,
+      "seed": 42,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "RBRS-AE",
+      "travel_distance": 810.0,
+      "runtime_seconds": 39.37905471700003,
+      "iterations_used": 51
+    },
+    {
+      "instance_id": 1,
+      "seed": 49,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "SOP",
+      "travel_distance": 5069.0,
+      "runtime_seconds": 0.00047836800001732627,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 1,
+      "seed": 49,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "FCFS",
+      "travel_distance": 1486.0,
+      "runtime_seconds": 0.00020395899997538436,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 1,
+      "seed": 49,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "DEPSO",
+      "travel_distance": 849.0,
+      "runtime_seconds": 22.42037366300002,
+      "iterations_used": 200
+    },
+    {
+      "instance_id": 1,
+      "seed": 49,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "RBRS-AE",
+      "travel_distance": 788.0,
+      "runtime_seconds": 24.013788731999966,
+      "iterations_used": 38
+    },
+    {
+      "instance_id": 2,
+      "seed": 56,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "SOP",
+      "travel_distance": 4212.0,
+      "runtime_seconds": 0.00048131500000181404,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 2,
+      "seed": 56,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "FCFS",
+      "travel_distance": 1332.0,
+      "runtime_seconds": 0.00017851699999482662,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 2,
+      "seed": 56,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "DEPSO",
+      "travel_distance": 751.0,
+      "runtime_seconds": 16.62708562800003,
+      "iterations_used": 200
+    },
+    {
+      "instance_id": 2,
+      "seed": 56,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "RBRS-AE",
+      "travel_distance": 747.0,
+      "runtime_seconds": 18.050951504999944,
+      "iterations_used": 29
+    },
+    {
+      "instance_id": 3,
+      "seed": 63,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "SOP",
+      "travel_distance": 5647.0,
+      "runtime_seconds": 0.00046365999997988183,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 3,
+      "seed": 63,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "FCFS",
+      "travel_distance": 1400.0,
+      "runtime_seconds": 0.0001651480000077754,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 3,
+      "seed": 63,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "DEPSO",
+      "travel_distance": 700.0,
+      "runtime_seconds": 21.629581411999993,
+      "iterations_used": 200
+    },
+    {
+      "instance_id": 3,
+      "seed": 63,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "RBRS-AE",
+      "travel_distance": 726.0,
+      "runtime_seconds": 16.913431172000003,
+      "iterations_used": 27
+    },
+    {
+      "instance_id": 4,
+      "seed": 70,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "SOP",
+      "travel_distance": 5490.0,
+      "runtime_seconds": 0.0004960279999863815,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 4,
+      "seed": 70,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "FCFS",
+      "travel_distance": 1511.0,
+      "runtime_seconds": 0.000391345000025467,
+      "iterations_used": 0
+    },
+    {
+      "instance_id": 4,
+      "seed": 70,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "DEPSO",
+      "travel_distance": 799.0,
+      "runtime_seconds": 19.913293761999967,
+      "iterations_used": 200
+    },
+    {
+      "instance_id": 4,
+      "seed": 70,
+      "scenario": 1,
+      "num_orders": 50,
+      "algorithm": "RBRS-AE",
+      "travel_distance": 828.0,
+      "runtime_seconds": 31.955419476999964,
+      "iterations_used": 37
+    }
+  ]
+}
