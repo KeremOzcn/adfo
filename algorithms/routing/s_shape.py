@@ -3,17 +3,12 @@ algorithms/routing/s_shape.py
 ==============================
 S-Shape heuristic - paper'ın benchmark routing yöntemi.
 
-Çalışma prensibi:
-- Picker, depot'tan ilk aisle'a gider
-- Eğer aisle'da en az 1 pick varsa, aisle'ı **baştan sona** (S şekli) gezer
-- Sonraki aisle'a geçer, ters yönde gezer, vb.
-- Hiç pick olmayan aisle'lar atlanır
-- Son aisle'dan sonra cross aisle üzerinden depot'a döner
-
-Bu yöntem multi-block layout için biraz uyarlanmış: her blok için ayrı S-Shape uygulanır,
-ama paper basitleştirmek için tek-blok S-Shape'i benchmark olarak kullanır.
-
-Bu modül "klasik" S-Shape'i implement eder (tek blok mantığıyla).
+Multi-block depo için doğru implementasyon:
+- Picker, depot'tan başlar
+- Her aisle'da pick varsa aisle'ı baştan sona (S şekli) gezer
+- Aisle içinde hangi blokta pick var, o bloğu gezer
+- Pick olmayan aisle'lar atlanır
+- Depot'a döner
 """
 
 import sys
@@ -24,13 +19,12 @@ from core.warehouse import Warehouse
 
 def s_shape_route(locations: list[int], warehouse: Warehouse) -> tuple[list[int], float]:
     """
-    Verilen lokasyonlar için S-Shape rotası kurar.
+    Multi-block depo için S-Shape rotası.
 
-    Strateji:
-    1) Her aisle'da hangi lokasyonlar var, bul.
-    2) Aisle'ları soldan sağa (veya yakından uzağa) sırala.
-    3) Çift aisle indeksli olanı yukarı (x artan), tek olanı aşağı (x azalan) gez.
-    4) Başta ve sonda depot.
+    Her aisle için:
+    - Çift indeks: cross-aisle'dan gir, aisle'ı x artan yönde gez
+    - Tek indeks: aisle'ı x azalan yönde gez
+    - warehouse.distance() kullanarak cross-aisle maliyetleri doğru hesaplanır.
 
     Döndürür: (route, total_distance)
     """
@@ -43,39 +37,39 @@ def s_shape_route(locations: list[int], warehouse: Warehouse) -> tuple[list[int]
     aisles_with_picks: dict[int, list[int]] = {}
     for loc in unique_locs:
         a = warehouse._aisle_of(loc)
-        if a is None:  # depot
+        if a is None:
             continue
         aisles_with_picks.setdefault(a, []).append(loc)
 
     if not aisles_with_picks:
         return [warehouse.DEPOT, warehouse.DEPOT], 0.0
 
-    # Aisle'ları depot'a yakınlıkla sırala
-    # Depot aisle 0'ın altında olduğu için aisle 0'a en yakın
     sorted_aisles = sorted(aisles_with_picks.keys())
 
     route = [warehouse.DEPOT]
     total_distance = 0.0
     current = warehouse.DEPOT
+    df = warehouse.dist_m
 
     for idx, aisle in enumerate(sorted_aisles):
         locs_in_aisle = aisles_with_picks[aisle]
 
-        # Aisle içinde x'e göre sırala
-        # Çift sıra: x artan (soldan sağa)
-        # Tek sıra: x azalan (sağdan sola)
-        locs_in_aisle.sort(key=lambda l: warehouse.coords(l)[0],
-                          reverse=(idx % 2 == 1))
+        # S-Shape: çift idx → x artan (depot tarafından uzağa)
+        #           tek idx → x azalan (uzaktan depot'a doğru)
+        reverse = (idx % 2 == 1)
+        locs_in_aisle.sort(
+            key=lambda l: warehouse.coords(l)[0],
+            reverse=reverse
+        )
 
-        # Tüm bu lokasyonları sırayla ziyaret et
         for loc in locs_in_aisle:
-            d = warehouse.distance(current, loc)
+            d = df(current, loc)
             total_distance += d
             route.append(loc)
             current = loc
 
     # Depot'a dön
-    total_distance += warehouse.distance(current, warehouse.DEPOT)
+    total_distance += df(current, warehouse.DEPOT)
     route.append(warehouse.DEPOT)
 
     return route, total_distance

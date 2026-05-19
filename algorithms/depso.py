@@ -129,6 +129,9 @@ class DEPSO(BatchingRoutingAlgorithm):
         self._warehouse = warehouse
         self._K = len(orders)
 
+        # Her çağrıda sıfırla — aynı instance tekrar kullanılabilsin
+        self.convergence_history = []
+
         if self._K == 0:
             return Solution(
                 algorithm_name=self.name,

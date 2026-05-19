@@ -33,7 +33,6 @@ def savings_batching(
     orders: list[Order],
     warehouse,
     capacity: float = None,
-    cache_distances: bool = True,
 ) -> list[Batch]:
     """
     Clarke-Wright Savings ile batching.
