@@ -56,5 +56,7 @@ jobs:
             echo "Sonuçlarda değişiklik yok, commit atlanıyor."
           else
             git commit -m "🤖 Auto-update: 35 senaryo sonuçları yenilendi"
+            # Workflow çalışırken push edilmiş yeni commit'leri çek
+            git pull --rebase origin master || git pull --rebase origin main
             git push
           fi
