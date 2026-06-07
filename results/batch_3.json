@@ -7,8 +7,8 @@
     "100_6_10",
     "100_10_2"
   ],
-  "n_instances": 3,
-  "depso_iter": 50,
+  "n_instances": 5,
+  "depso_iter": 100,
   "results": [
     {
       "scenario": "100_2_10",
@@ -16,31 +16,31 @@
       "n_maxol": 2,
       "a_maxol": 10,
       "paper_vs_sop": -88.63,
-      "n_instances": 3,
+      "n_instances": 5,
       "stats": {
         "SOP": {
-          "mean_td": 2600.0,
+          "mean_td": 2634.4,
           "mean_rt": 0.0,
           "vs_sop_mean": 0.0,
-          "vs_fcfs_mean": 411.06
+          "vs_fcfs_mean": 410.92
         },
         "FCFS": {
-          "mean_td": 509.3,
+          "mean_td": 516.0,
           "mean_rt": 0.0,
           "vs_sop_mean": -80.41,
           "vs_fcfs_mean": 0.0
         },
         "DEPSO": {
-          "mean_td": 287.3,
-          "mean_rt": 1.96,
-          "vs_sop_mean": -88.97,
-          "vs_fcfs_mean": -43.54
+          "mean_td": 289.8,
+          "mean_rt": 4.55,
+          "vs_sop_mean": -89.01,
+          "vs_fcfs_mean": -43.81
         },
         "RBRS-AE": {
-          "mean_td": 282.3,
-          "mean_rt": 4.67,
-          "vs_sop_mean": -89.17,
-          "vs_fcfs_mean": -44.56
+          "mean_td": 312.4,
+          "mean_rt": 10.03,
+          "vs_sop_mean": -88.16,
+          "vs_fcfs_mean": -39.49
         }
       }
     },
@@ -50,31 +50,31 @@
       "n_maxol": 6,
       "a_maxol": 2,
       "paper_vs_sop": -89.2,
-      "n_instances": 3,
+      "n_instances": 5,
       "stats": {
         "SOP": {
-          "mean_td": 1741.7,
+          "mean_td": 1726.6,
           "mean_rt": 0.0,
           "vs_sop_mean": 0.0,
-          "vs_fcfs_mean": 762.23
+          "vs_fcfs_mean": 764.2
         },
         "FCFS": {
-          "mean_td": 202.0,
+          "mean_td": 199.8,
           "mean_rt": 0.0,
-          "vs_sop_mean": -88.37,
+          "vs_sop_mean": -88.41,
           "vs_fcfs_mean": 0.0
         },
         "DEPSO": {
-          "mean_td": 172.0,
-          "mean_rt": 3.86,
-          "vs_sop_mean": -90.1,
-          "vs_fcfs_mean": -14.83
+          "mean_td": 171.8,
+          "mean_rt": 8.09,
+          "vs_sop_mean": -90.03,
+          "vs_fcfs_mean": -13.99
         },
         "RBRS-AE": {
-          "mean_td": 170.7,
-          "mean_rt": 15.64,
-          "vs_sop_mean": -90.19,
-          "vs_fcfs_mean": -15.51
+          "mean_td": 177.0,
+          "mean_rt": 27.45,
+          "vs_sop_mean": -89.73,
+          "vs_fcfs_mean": -11.36
         }
       }
     },
@@ -84,31 +84,31 @@
       "n_maxol": 6,
       "a_maxol": 6,
       "paper_vs_sop": -82.77,
-      "n_instances": 3,
+      "n_instances": 5,
       "stats": {
         "SOP": {
-          "mean_td": 1709.0,
+          "mean_td": 1697.2,
           "mean_rt": 0.0,
           "vs_sop_mean": 0.0,
-          "vs_fcfs_mean": 388.23
+          "vs_fcfs_mean": 395.53
         },
         "FCFS": {
-          "mean_td": 353.0,
+          "mean_td": 345.0,
           "mean_rt": 0.0,
-          "vs_sop_mean": -79.38,
+          "vs_sop_mean": -79.71,
           "vs_fcfs_mean": 0.0
         },
         "DEPSO": {
-          "mean_td": 292.0,
-          "mean_rt": 3.07,
-          "vs_sop_mean": -82.93,
-          "vs_fcfs_mean": -16.89
+          "mean_td": 280.8,
+          "mean_rt": 6.72,
+          "vs_sop_mean": -83.46,
+          "vs_fcfs_mean": -18.17
         },
         "RBRS-AE": {
-          "mean_td": 296.7,
-          "mean_rt": 3.43,
-          "vs_sop_mean": -82.66,
-          "vs_fcfs_mean": -15.71
+          "mean_td": 283.8,
+          "mean_rt": 8.49,
+          "vs_sop_mean": -83.29,
+          "vs_fcfs_mean": -17.54
         }
       }
     },
@@ -118,31 +118,31 @@
       "n_maxol": 6,
       "a_maxol": 10,
       "paper_vs_sop": -78.51,
-      "n_instances": 3,
+      "n_instances": 5,
       "stats": {
         "SOP": {
-          "mean_td": 1728.7,
+          "mean_td": 1717.2,
           "mean_rt": 0.0,
           "vs_sop_mean": 0.0,
-          "vs_fcfs_mean": 258.18
+          "vs_fcfs_mean": 258.79
         },
         "FCFS": {
-          "mean_td": 483.3,
+          "mean_td": 479.0,
           "mean_rt": 0.0,
-          "vs_sop_mean": -72.05,
+          "vs_sop_mean": -72.1,
           "vs_fcfs_mean": 0.0
         },
         "DEPSO": {
-          "mean_td": 385.0,
-          "mean_rt": 2.38,
-          "vs_sop_mean": -77.74,
-          "vs_fcfs_mean": -20.38
+          "mean_td": 384.8,
+          "mean_rt": 4.97,
+          "vs_sop_mean": -77.58,
+          "vs_fcfs_mean": -19.67
         },
         "RBRS-AE": {
-          "mean_td": 383.7,
-          "mean_rt": 2.35,
-          "vs_sop_mean": -77.81,
-          "vs_fcfs_mean": -20.58
+          "mean_td": 394.0,
+          "mean_rt": 4.77,
+          "vs_sop_mean": -77.06,
+          "vs_fcfs_mean": -17.86
         }
       }
     },
@@ -152,31 +152,31 @@
       "n_maxol": 10,
       "a_maxol": 2,
       "paper_vs_sop": -86.23,
-      "n_instances": 3,
+      "n_instances": 5,
       "stats": {
         "SOP": {
-          "mean_td": 1297.3,
+          "mean_td": 1316.2,
           "mean_rt": 0.0,
           "vs_sop_mean": 0.0,
-          "vs_fcfs_mean": 578.79
+          "vs_fcfs_mean": 599.67
         },
         "FCFS": {
-          "mean_td": 191.7,
+          "mean_td": 188.6,
           "mean_rt": 0.0,
-          "vs_sop_mean": -85.15,
+          "vs_sop_mean": -85.62,
           "vs_fcfs_mean": 0.0
         },
         "DEPSO": {
-          "mean_td": 172.3,
-          "mean_rt": 4.48,
-          "vs_sop_mean": -86.61,
-          "vs_fcfs_mean": -9.57
+          "mean_td": 172.4,
+          "mean_rt": 9.13,
+          "vs_sop_mean": -86.85,
+          "vs_fcfs_mean": -8.35
         },
         "RBRS-AE": {
-          "mean_td": 171.3,
-          "mean_rt": 11.37,
-          "vs_sop_mean": -86.71,
-          "vs_fcfs_mean": -10.35
+          "mean_td": 169.0,
+          "mean_rt": 21.92,
+          "vs_sop_mean": -87.1,
+          "vs_fcfs_mean": -10.23
         }
       }
     }
