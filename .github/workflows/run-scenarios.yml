@@ -1,0 +1,60 @@
+name: Run 35 Scenarios
+
+# Bu workflow şu durumlarda tetiklenir:
+# 1. algorithms/ klasöründe değişiklik olunca (otomatik)
+# 2. Actions sekmesinden elle başlatınca (manuel)
+on:
+  push:
+    paths:
+      - 'algorithms/**'
+      - 'core/**'
+      - 'config.py'
+      - 'run_batch.py'
+      - '.github/workflows/run-scenarios.yml'
+  workflow_dispatch:    # GitHub Actions sekmesinden elle çalıştırma butonu
+
+jobs:
+  run-scenarios:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90      # En kötü ihtimal 90 dakika
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run all 7 batches
+        run: |
+          mkdir -p results
+          for i in 1 2 3 4 5 6 7; do
+            echo "════════ Batch $i / 7 başlıyor ════════"
+            python run_batch.py --batch $i
+            echo "════════ Batch $i bitti ════════"
+          done
+      
+      - name: List results
+        run: |
+          echo "=== Üretilen dosyalar ==="
+          ls -la results/
+      
+      - name: Commit and push results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add results/batch_*.json
+          if git diff --staged --quiet; then
+            echo "Sonuçlarda değişiklik yok, commit atlanıyor."
+          else
+            git commit -m "🤖 Auto-update: 35 senaryo sonuçları yenilendi"
+            git push
+          fi
