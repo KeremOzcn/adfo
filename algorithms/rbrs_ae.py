@@ -58,38 +58,13 @@ class RBRS_AE(BatchingRoutingAlgorithm):
         # 1) Priority skorları — 1 kez
         priorities = self._priority_scores(orders)
 
-        # 2) Multi-start: 3 farklı başlangıç noktası dene, en iyisini al
-        # Başlangıç 1: Savings warm-start
-        # Başlangıç 2: Regret-based
-        # Başlangıç 3: Savings + farklı shuffle seed
-        best_dist    = float('inf')
-        best_batches = []
-
-        for start_seed in [self._rng.randint(0, 9999) for _ in range(3)]:
-            local_rng = random.Random(start_seed)
-
-            # Savings başlangıcı (local_rng ile shuffle)
-            s_batches = self._savings_start(orders, rng=local_rng)
-            self._compute_routes(s_batches)
-            s_dist = self._total_dist(s_batches)
-
-            # Regret başlangıcı (local_rng ile)
-            r_batches = self._regret_assignment(orders, priorities, rng=local_rng)
-            self._compute_routes(r_batches)
-            r_dist = self._total_dist(r_batches)
-
-            if s_dist <= r_dist:
-                batches    = s_batches
-                start_dist = s_dist
-            else:
-                batches    = r_batches
-                start_dist = r_dist
-
-            if start_dist < best_dist:
-                best_dist    = start_dist
-                best_batches = self._clone(batches)
-
-        batches = self._clone(best_batches)
+        # 2) Regret-only başlangıç (multi-start ve savings kaldırıldı — performance fix)
+        # Önceki versiyon: 3 multi-start × (savings + regret) = aşırı yavaş, kalite kazancı minimal
+        # Yeni versiyon: tek regret assignment, ana iyileştirme iterative loop'ta yapılıyor
+        batches      = self._regret_assignment(orders, priorities)
+        self._compute_routes(batches)
+        best_dist    = self._total_dist(batches)
+        best_batches = self._clone(batches)
         self.convergence_history = [best_dist]
 
         if self.verbose:
@@ -419,13 +394,29 @@ class RBRS_AE(BatchingRoutingAlgorithm):
         freed_pri = [priorities[oid_map[id(o)]] if id(o) in oid_map else 0.5
                      for o in freed]
 
-        # Tüm order'ları (kept içindeki + freed) tek havuzda regret ile yeniden ata
-        # QA Bug 3: freed_batches sonucunu yok saymak yerine direkt kept'e entegre et
-        all_pool_orders  = [o for b in kept for o in b.orders] + freed
-        all_pool_pri     = ([priorities[oid_map[id(o)]] if id(o) in oid_map else 0.5
-                             for b in kept for o in b.orders] + freed_pri)
+        # Performance fix: tüm pool'u yeniden assign etmek yerine sadece freed'i kept'e ekle.
+        # Eski yaklaşım her iter'de N×B insertion cost hesabı yapıyordu (gereksiz iş).
+        # Freed order'ları priority'ye göre sıralayıp greedy regret ile yerleştir.
+        new_batches = kept[:]
+        for o, pri in sorted(zip(freed, freed_pri), key=lambda x: -x[1]):
+            costs = self._insertion_costs(o, new_batches)
+            if not costs:
+                # Hiç feasible yer yok, yeni batch aç
+                new_batches.append(Batch(batch_id=len(new_batches),
+                                          orders=[o],
+                                          total_weight=o.total_weight))
+                continue
+            _, target = costs[0]  # En düşük cost'lu hedef
+            if target == -1:
+                new_batches.append(Batch(batch_id=len(new_batches),
+                                          orders=[o],
+                                          total_weight=o.total_weight))
+            else:
+                new_batches[target].orders.append(o)
+                new_batches[target].total_weight += o.total_weight
+                # Route'u invalidate et, _compute_routes daha sonra yeniden hesaplayacak
+                new_batches[target].travel_distance = 0.0
 
-        new_batches = self._regret_assignment(all_pool_orders, all_pool_pri)
         self._renumber(new_batches)
         return new_batches
 
