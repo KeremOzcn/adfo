@@ -6,7 +6,7 @@ Plotly ile depo görselleştirmesi.
 Üretilen şekiller:
 - Depo düzeni (raf blokları, aisle'lar, cross aisle'lar, depot)
 - Sipariş lokasyonları (renk = ABC sınıfı veya batch ID)
-- Picker rotası (oklarla)
+- Picker route (with arrows)
 """
 
 from __future__ import annotations
@@ -85,11 +85,11 @@ def plot_warehouse_layout(
         hovertemplate='Depot<br>x=%{x:.1f}, y=%{y:.1f}<extra></extra>',
     ))
 
-    # Sınıf lokasyonları (isteğe bağlı)
+    # Class locations (optional)
     if show_class_locations:
         classes = warehouse.assign_locations_to_classes()
         for cls in ['A', 'B', 'C']:
-            locs = classes[cls][:sample_size_per_class]  # örnekle
+            locs = classes[cls][:sample_size_per_class]  # sample
             xs, ys = [], []
             for lid in locs:
                 x, y = warehouse.coords(lid)
@@ -99,14 +99,14 @@ def plot_warehouse_layout(
                 x=xs, y=ys,
                 mode='markers',
                 marker=dict(size=4, color=CLASS_COLORS[cls], opacity=0.6),
-                name=f'Sınıf {cls} (örnek {len(locs)})',
-                hovertemplate=f'Sınıf {cls}<br>loc=%{{customdata}}<br>(%{{x:.1f}}, %{{y:.1f}})<extra></extra>',
+                name=f'Class {cls} (sample {len(locs)})',
+                hovertemplate=f'Class {cls}<br>loc=%{{customdata}}<br>(%{{x:.1f}}, %{{y:.1f}})<extra></extra>',
                 customdata=locs,
             ))
 
     # Layout
     fig.update_layout(
-        title="Depo Düzeni",
+        title="Warehouse Layout",
         xaxis_title="X (LU)",
         yaxis_title="Y (LU)",
         xaxis=dict(scaleanchor="y", scaleratio=1, gridcolor='#ecf0f1'),
@@ -128,7 +128,7 @@ def plot_batch_routes(
     """
     Birden çok batch'in rotalarını görselleştir.
 
-    batches: Batch nesneleri listesi (route alanı dolu olmalı)
+    batches: List of Batch objects (with route filled)
     """
     fig = go.Figure()
 
@@ -170,7 +170,7 @@ def plot_batch_routes(
 
     total_shown = sum(b.travel_distance for b in batches[:max_batches_to_show])
     fig.update_layout(
-        title=f"Picker Rotaları (ilk {min(max_batches_to_show, len(batches))} batch, "
+        title=f"Picker Routes (first {min(max_batches_to_show, len(batches))} batch, "
               f"toplam {total_shown:.0f} LU)",
         xaxis_title="X (LU)",
         yaxis_title="Y (LU)",
@@ -183,7 +183,7 @@ def plot_batch_routes(
     return fig
 
 
-def plot_convergence(history: list[float], title: str = "DEPSO Yakınsama") -> go.Figure:
+def plot_convergence(history: list[float], title: str = "DEPSO Convergence") -> go.Figure:
     """DEPSO'nun iterasyon başına Gbest grafiği."""
     fig = go.Figure()
     fig.add_trace(go.Scatter(
@@ -191,11 +191,11 @@ def plot_convergence(history: list[float], title: str = "DEPSO Yakınsama") -> g
         mode='lines',
         line=dict(color='#3498db', width=2),
         name='Gbest',
-        hovertemplate='İterasyon %{x}<br>Gbest = %{y:.1f} LU<extra></extra>',
+        hovertemplate='Iteration %{x}<br>Gbest = %{y:.1f} LU<extra></extra>',
     ))
     fig.update_layout(
         title=title,
-        xaxis_title="İterasyon",
+        xaxis_title="Iteration",
         yaxis_title="Travel Distance (LU)",
         plot_bgcolor='white',
         height=350,
@@ -204,7 +204,7 @@ def plot_convergence(history: list[float], title: str = "DEPSO Yakınsama") -> g
     return fig
 
 
-def plot_comparison_bar(rows, title: str = "Algoritma Karşılaştırması") -> go.Figure:
+def plot_comparison_bar(rows, title: str = "Algorithm Comparison") -> go.Figure:
     """Algoritmaların travel distance'larını yan yana bar olarak göster."""
     names = [r.algorithm for r in rows]
     distances = [r.travel_distance_LU for r in rows]
