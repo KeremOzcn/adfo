@@ -14,7 +14,7 @@ Kübler, Glock, Bauernhansl (2020) reproduksiyonu + RBRS-AE algoritması.
 | `algorithms/routing/*` | ✅ NN, 2-opt, S-Shape |
 | `algorithms/batching/*` | ✅ First-fit, Savings |
 | `algorithms/depso.py` | ✅ **Paper algoritması — 35 senaryoda doğrulandı** |
-| `algorithms/rbrs_ae.py` | ✅ **Multi-start + Best-improvement + Final LS** |
+| `algorithms/rbrs_ae.py` | ✅ **Single regret assignment + Best-improvement + Final LS** |
 | `algorithms/relocation.py` | ✅ Dynamic storage relocation |
 | `benchmarks/{sop,fcfs}.py` | ✅ Baseline'lar |
 | `ui/app.py` + 4 sayfa | ✅ Streamlit hazır |
@@ -40,7 +40,7 @@ Kübler, Glock, Bauernhansl (2020) reproduksiyonu + RBRS-AE algoritması.
 | **DEPSO** | **139 LU** | **-90.0%** | **-25.7%** | **14s** |
 | **RBRS-AE** | **139 LU** | **-90.0%** | **-25.7%** | **6s** |
 
-Paper hedefleri: -88% (SOP), -39% (FCFS) → DEPSO vs SOP birebir tutuyor ✅
+Paper hedefleri: -88% (50_2_6 senaryosu), ortalama -83.78% (35 senaryo) → tutarlı ✅
 RBRS-AE: Aynı çözüm kalitesi, 2.3x daha hızlı.
 
 ---
@@ -58,7 +58,7 @@ Stop        = 100 iter veya 15 no-improvement
 ```
 
 Son iyileştirmeler:
-- **Multi-start:** Savings + Regret başlangıç noktaları karşılaştırılır
+- **Tek başlangıç:** Regret-based assignment (multi-start kaldırıldı — performans)
 - **Best-improvement shift:** Rastgele değil, tüm hedefler taranır
 - **Final local search:** Ana döngü sonrası 15 kez best-improvement
 

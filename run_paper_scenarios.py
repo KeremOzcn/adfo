@@ -161,7 +161,7 @@ def run_scenario(scenario: dict, n_instances: int,
     t_start = time.perf_counter()
 
     for inst_id in range(n_instances):
-        seed = inst_id * 7 + 42
+        seed = inst_id * 7 + 42 + num_orders  # vary by order count to avoid subset overlap
         rng  = random.Random(seed)
         shuffled = pool[:]
         rng.shuffle(shuffled)
