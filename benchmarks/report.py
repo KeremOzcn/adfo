@@ -50,6 +50,9 @@ def generate_report(json_path: str) -> str:
             f"| {vs_sop} "
             f"| {vs_fcfs} |"
         )
+    lines.append("")
+    lines.append("> Note: vs SOP / vs FCFS are the mean of per-instance percentage differences, "
+                 "not the ratio of the mean TDs. The two differ when instance sizes vary.")
 
     lines.append("")
     lines.append("## Paper Hedefleriyle Karşılaştırma")
