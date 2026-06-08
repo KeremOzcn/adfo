@@ -14,6 +14,8 @@ Bu modül, Kübler et al. (2020) Section 6'da tanımlanan depo düzenini impleme
 - Lokasyon ID encoding: aisle × 720 + side × 360 + rack × 4 + within_rack
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from functools import lru_cache
 from typing import Iterable

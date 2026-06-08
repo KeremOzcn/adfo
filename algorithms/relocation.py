@@ -184,6 +184,7 @@ class DynamicRelocation:
 
         # 4) Relocation önerileri test et
         tested = 0
+        retried: set[int] = set()   # item_id's that have already been re-queued once
         while priority_list and tested < self.max_suggestions:
             # En yüksek öncelikli ascending item seç
             asc_item = priority_list.pop(0)
@@ -204,9 +205,11 @@ class DynamicRelocation:
             tdr = td_comparison - td_after   # anlık azalma
 
             if tdr <= 0:
-                # Azalma yok → geri al
+                # Azalma yok → geri al; allow at most one retry per item per period
                 self._undo_suggestion(suggestion)
-                priority_list.append(asc_item)  # listeden çıkar
+                if asc_item.item_id not in retried:
+                    priority_list.append(asc_item)
+                    retried.add(asc_item.item_id)
                 tested += 1
                 result.num_rejected += 1
                 continue
@@ -274,7 +277,7 @@ class DynamicRelocation:
         candidates = []
         for state in self.item_states.values():
             if (state.periods_in_wrong_class >= self.o and
-                    state.periods_in_target_class >= 0):
+                    state.periods_in_target_class >= self.u):
                 # Ascending (C→B, C→A, B→A) veya descending
                 gap = (class_order[state.current_class] -
                        class_order[state.forecast_class])

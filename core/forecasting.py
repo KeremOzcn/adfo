@@ -77,8 +77,8 @@ class HoltWinters:
         else:
             self.b = 0.0
 
-        # Seasonality: her periyot / ilk L ortalaması - 1
-        self.c = [history[i] / max(self.a, 1e-9) - 1.0 for i in range(self.L)]
+        # Seasonality: additive model — deviation from level (not ratio)
+        self.c = [history[i] - self.a for i in range(self.L)]
 
         # ── Güncelleme döngüsü ─────────────────────────────────────
         for t in range(n):

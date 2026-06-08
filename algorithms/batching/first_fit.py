@@ -14,6 +14,8 @@ Yani iki aşama:
 2) Kalan siparişleri var olan EN KÜÇÜK ID'li batch'e ata (kapasiteye sığarsa)
 """
 
+from __future__ import annotations
+
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -40,8 +42,15 @@ def first_fit_batching(
     batches: list[Batch] = []
     unassigned: list[Order] = []
 
-    # Aşama 1: Sıraya göre, sığdığı ilk batch'e ekle, yoksa yeni batch aç
+    # Aşama 1 (First Fit): Sıraya göre sığdığı ilk batch'e ekle; yoksa yeni batch aç.
+    # Paper Section 5.2.2: "assign the remaining orders to the batch with the
+    # smallest number into which they fit" — First Fit from batch 0.
     for order in orders:
+        if order.total_weight > capacity:
+            # Paper Assumption 6: bu olmamalı; aşama 2'de yeniden dene
+            unassigned.append(order)
+            continue
+
         placed = False
         for batch in batches:
             if batch.total_weight + order.total_weight <= capacity:
@@ -51,20 +60,11 @@ def first_fit_batching(
                 break
 
         if not placed:
-            # Bu siparişin tek başına bile sığması gerekiyor
-            if order.total_weight > capacity:
-                # Edge case: tek sipariş kapasiteyi aşıyor — atla veya hata
-                # Paper'a göre bu olmamalı (Assumption 6)
-                unassigned.append(order)
-                continue
-
-            # Yeni batch aç
-            new_batch = Batch(
+            batches.append(Batch(
                 batch_id=len(batches),
                 orders=[order],
                 total_weight=order.total_weight,
-            )
-            batches.append(new_batch)
+            ))
 
     if unassigned:
         # Pratik düşünce: paper Assumption 6'ya göre bu olmamalı

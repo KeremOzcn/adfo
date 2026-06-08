@@ -24,6 +24,8 @@ from algorithms.routing.nearest_neighbor import nearest_neighbor_route
 from algorithms.routing.two_opt import two_opt_improve
 from config import ITEMS, RBRS_AE as RBRS_CONFIG
 
+_ROUTE_STALE = -1.0  # sentinel: route needs recomputation (never a valid distance)
+
 
 class RBRS_AE(BatchingRoutingAlgorithm):
 
@@ -247,7 +249,7 @@ class RBRS_AE(BatchingRoutingAlgorithm):
         for idx, b in enumerate(batches):
             if b.total_weight + order.total_weight > self.capacity:
                 continue
-            if b.travel_distance == 0.0 and b.orders:
+            if b.travel_distance < 0.0 and b.orders:
                 _, b.travel_distance = self._route_cost(b.locations)
             _, c = self._route_cost(b.locations + new_locs)
             costs.append((c - b.travel_distance, idx))
@@ -417,7 +419,7 @@ class RBRS_AE(BatchingRoutingAlgorithm):
                 new_batches[target].orders.append(o)
                 new_batches[target].total_weight += o.total_weight
                 # Route'u invalidate et, _compute_routes daha sonra yeniden hesaplayacak
-                new_batches[target].travel_distance = 0.0
+                new_batches[target].travel_distance = _ROUTE_STALE
 
         self._renumber(new_batches)
         return new_batches
@@ -536,7 +538,7 @@ class RBRS_AE(BatchingRoutingAlgorithm):
         cached = self._route_cache.get(key)
         if cached is not None:
             return cached
-        route, _ = nearest_neighbor_route(list(key), self._wh)
+        route, _ = nearest_neighbor_route(locations, self._wh)
         result = two_opt_improve(route, self._wh)
         self._route_cache[key] = result
         return result

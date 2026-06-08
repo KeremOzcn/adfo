@@ -39,6 +39,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from core.data_loader import Order
 from algorithms.base import BatchingRoutingAlgorithm, Batch, Solution
 from algorithms.batching.first_fit import first_fit_batching
+from algorithms.routing.nearest_neighbor import nearest_neighbor_route
 from algorithms.routing.two_opt import nn_then_2opt
 from config import DEPSO as DEPSO_CONFIG, ITEMS
 
@@ -158,6 +159,10 @@ class DEPSO(BatchingRoutingAlgorithm):
                 self._move_particle(p_idx)
                 self._evaluate_particle(p_idx)
 
+            # Track convergence before stagnation check so the counter compares
+            # post-move gbest against the previous post-move gbest (not post-LS)
+            self.convergence_history.append(self.gbest_distance)
+
             # Adım 11: Gbest stagnation
             self._update_stagnation()
 
@@ -166,9 +171,6 @@ class DEPSO(BatchingRoutingAlgorithm):
 
             # Adım 13: Local search
             self._local_search()
-
-            # Track convergence
-            self.convergence_history.append(self.gbest_distance)
 
             if self.verbose and it % 50 == 0:
                 print(f"  [DEPSO] iter {it:4d}/{self.num_iterations}: "
@@ -238,12 +240,11 @@ class DEPSO(BatchingRoutingAlgorithm):
 
         batches = savings_batching(self._orders, self._warehouse,
                                     capacity=ITEMS['picker_capacity_WU'])
+        order_to_idx = {id(o): i for i, o in enumerate(self._orders)}
         perm = []
         for b in batches:
             for o in b.orders:
-                # Order ID'leri global olabilir; biz orders listesindeki indeksleri istiyoruz
-                idx = self._orders.index(o)
-                perm.append(idx)
+                perm.append(order_to_idx[id(o)])
 
         # Atanmamış varsa ekle (olmamalı ama güvenlik)
         already = set(perm)
@@ -500,7 +501,6 @@ class DEPSO(BatchingRoutingAlgorithm):
             total = 0.0
             for b in batches:
                 # NN yeterli — local search hızı için 2-opt atlıyoruz
-                from algorithms.routing.nearest_neighbor import nearest_neighbor_route
                 route, dist = nearest_neighbor_route(b.locations, self._warehouse)
                 b.route = route
                 b.travel_distance = dist
