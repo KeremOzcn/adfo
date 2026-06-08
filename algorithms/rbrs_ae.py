@@ -39,6 +39,7 @@ class RBRS_AE(BatchingRoutingAlgorithm):
         self._rng               = random.Random(seed)
         self._wh                = None
         self.convergence_history: list[float] = []
+        self._route_cache: dict = {}   # frozenset(locs) -> (route, dist) cache
 
     @property
     def name(self) -> str:
@@ -50,6 +51,7 @@ class RBRS_AE(BatchingRoutingAlgorithm):
 
     def _solve_impl(self, orders: list[Order], warehouse) -> Solution:
         self._wh = warehouse
+        self._route_cache = {}   # her yeni problem için cache sıfırla
         if not orders:
             return Solution(self.name, [], 0.0)
 
@@ -529,8 +531,15 @@ class RBRS_AE(BatchingRoutingAlgorithm):
     def _route_cost(self, locations: list[int]) -> tuple[list[int], float]:
         if not locations:
             return [self._wh.DEPOT, self._wh.DEPOT], 0.0
-        route, _ = nearest_neighbor_route(list(set(locations)), self._wh)
-        return two_opt_improve(route, self._wh)
+        # Cache: aynı lokasyon kümesi için 2-opt'u tekrar çalıştırma
+        key = frozenset(locations)
+        cached = self._route_cache.get(key)
+        if cached is not None:
+            return cached
+        route, _ = nearest_neighbor_route(list(key), self._wh)
+        result = two_opt_improve(route, self._wh)
+        self._route_cache[key] = result
+        return result
 
     def _compute_routes(self, batches: list[Batch]) -> None:
         for b in batches:

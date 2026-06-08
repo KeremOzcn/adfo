@@ -32,13 +32,13 @@
         },
         "DEPSO": {
           "mean_td": 404.0,
-          "mean_rt": 13.38,
+          "mean_rt": 10.04,
           "vs_sop_mean": -69.15,
           "vs_fcfs_mean": -13.74
         },
         "RBRS-AE": {
           "mean_td": 413.8,
-          "mean_rt": 6.88,
+          "mean_rt": 0.61,
           "vs_sop_mean": -68.38,
           "vs_fcfs_mean": -11.52
         }
@@ -66,13 +66,13 @@
         },
         "DEPSO": {
           "mean_td": 164.8,
-          "mean_rt": 20.2,
+          "mean_rt": 18.26,
           "vs_sop_mean": -93.94,
           "vs_fcfs_mean": -20.25
         },
         "RBRS-AE": {
           "mean_td": 150.8,
-          "mean_rt": 109.47,
+          "mean_rt": 8.9,
           "vs_sop_mean": -94.46,
           "vs_fcfs_mean": -27.09
         }
@@ -100,13 +100,13 @@
         },
         "DEPSO": {
           "mean_td": 255.6,
-          "mean_rt": 13.57,
+          "mean_rt": 13.68,
           "vs_sop_mean": -90.61,
           "vs_fcfs_mean": -32.08
         },
         "RBRS-AE": {
           "mean_td": 246.0,
-          "mean_rt": 40.86,
+          "mean_rt": 9.82,
           "vs_sop_mean": -90.97,
           "vs_fcfs_mean": -34.63
         }
@@ -134,13 +134,13 @@
         },
         "DEPSO": {
           "mean_td": 302.4,
-          "mean_rt": 10.92,
+          "mean_rt": 9.9,
           "vs_sop_mean": -88.83,
           "vs_fcfs_mean": -42.42
         },
         "RBRS-AE": {
           "mean_td": 311.4,
-          "mean_rt": 24.65,
+          "mean_rt": 4.37,
           "vs_sop_mean": -88.5,
           "vs_fcfs_mean": -40.69
         }
@@ -168,13 +168,13 @@
         },
         "DEPSO": {
           "mean_td": 171.8,
-          "mean_rt": 21.23,
+          "mean_rt": 22.97,
           "vs_sop_mean": -90.03,
           "vs_fcfs_mean": -13.99
         },
         "RBRS-AE": {
           "mean_td": 177.0,
-          "mean_rt": 69.0,
+          "mean_rt": 6.18,
           "vs_sop_mean": -89.73,
           "vs_fcfs_mean": -11.36
         }
